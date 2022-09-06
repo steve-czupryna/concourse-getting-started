@@ -1,0 +1,21 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source: 
+    repository: maven
+    tag: 3-jdk-11-openj9
+params:
+  HTTP_PROXY: http://contractorproxywest.northgrum.com:80
+  HTTPS_PROXY: http://contractorproxywest.northgrum.com:80
+inputs:
+ - name: spring-petclinic
+ - name: test-scripts
+
+##########################################################################################
+### - By default, Concourse will import resources within the container to the path
+###   /$pwd/$INPUT_NAME. 
+### - All commands will be run starting from $pwd. So to run the script, start the path 
+###   from the input name. Then the normal directory structure of the resource imported.
+###########################################################################################
+run:
+ path: test-scripts/unit-test.sh
