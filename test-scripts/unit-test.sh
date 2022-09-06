@@ -2,4 +2,4 @@
 
 cd spring-petclinic
 
-mvn test
+mvn -s ./settings.xml test

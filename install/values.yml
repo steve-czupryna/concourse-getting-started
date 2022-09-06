@@ -8,6 +8,7 @@ concourse:
   web:
     clusterName: concourse-test   ## a name for your cluster. can be anything
     bindIp: 0.0.0.0               ## bindport for the web service. currently expecting to be exposed to localhost
+    runtime: containerd
     bindPort: 8080                ## once exposed, the service will be available outside the cluster at localhost:8080 
     localAuth:
       teams:
@@ -15,5 +16,16 @@ concourse:
     auth:
       mainTeam:
         localUser: "test"         ## adds user "test" to the "main" team
+  worker:
+    runtime: containerd
+    http_proxy: contractorproxywest.northgrum.com:80
+    https_proxy: contractorproxywest.northgrum.com:80
+    no_proxy:
+      - localhost
+      - 127.0.0.1
+      - 10.96.0.0/12
+      - 192.168.59.0/24
+      - 192.168.49.0/24
+      - 192.168.39.0/24
 secrets:  
   localUsers: "test:test"         ## comma separated list of username:password for local auth users

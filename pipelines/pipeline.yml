@@ -117,6 +117,9 @@ jobs:
             source: 
               repository: maven
               tag: 3-jdk-11-openj9
+          params:
+            HTTP_PROXY: http://contractorproxywest.northgrum.com:80
+            HTTPS_PROXY: http://contractorproxywest.northgrum.com:80
           inputs:
             - name: spring-petclinic
             - name: test-scripts
